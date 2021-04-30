@@ -6,7 +6,6 @@ import (
 	"io"
 	"net/http"
 	"os"
-	"regexp"
 	"strings"
 )
 
@@ -48,7 +47,6 @@ func Parse(fileName string) (playlist Playlist, err error) {
 	scanner := bufio.NewScanner(f)
 	for scanner.Scan() {
 		line := scanner.Text()
-		onFirstLine = false
 
 	if strings.HasPrefix(line, "#") || line == "" {
 			continue
