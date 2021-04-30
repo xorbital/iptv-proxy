@@ -45,11 +45,7 @@ func Parse(fileName string) (playlist Playlist, err error) {
 		return
 	}
 	defer f.Close()
-
-	onFirstLine := true
 	scanner := bufio.NewScanner(f)
-	tagsRegExp, _ := regexp.Compile("([a-zA-Z0-9-]+?)=\"([^\"]+)\"")
-	
 	for scanner.Scan() {
 		line := scanner.Text()
 		onFirstLine = false
