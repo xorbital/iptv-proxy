@@ -52,14 +52,14 @@ func Parse(fileName string) (playlist Playlist, err error) {
 		line := scanner.Text()
 		 if strings.HasPrefix(line, "#") || line == "" {
 			continue
-		} else if len(playlist.Tracks) == 0 {
-			err = errors.New("URI provided for playlist with no tracks")
-			return
 		} else {
-			playlist.Tracks[len(playlist.Tracks)-1].URI = strings.Trim(line, " ")
+			playlist.Tracks = append(playlist.Tracks, fileName)
+			playlist.Tracks[0].URI = strings.Trim(line, " ")
 		}
 	}
-
+	if len(playlist.Tracks) == 0 {
+		err = errors.New("URI provided for playlist with no tracks")
+	}
 	return playlist, nil
 }
 
