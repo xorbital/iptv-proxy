@@ -53,7 +53,8 @@ func Parse(fileName string) (playlist Playlist, err error) {
 		 if strings.HasPrefix(line, "#") || line == "" {
 			continue
 		} else {
-			playlist.Tracks = append(playlist.Tracks, fileName)
+			track := &Track{strings.Trim(fileName, " "), length, "", nil}
+			playlist.Tracks = append(playlist.Tracks, *track)
 			playlist.Tracks[0].URI = strings.Trim(line, " ")
 		}
 	}
